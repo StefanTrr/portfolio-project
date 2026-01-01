@@ -42,3 +42,6 @@ with Return_data:
 
 stl.write(" ")
 stl.caption("updated as of january 2026")
+
+#Favicon & page title
+stl.set_page_config(page_title="Portfolio Project")
