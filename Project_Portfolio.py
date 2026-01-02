@@ -12,14 +12,15 @@ data = pd.read_csv(f"https://docs.google.com/spreadsheets/d/{sheet_id}/export?fo
 
 
 #Change the 'date' into the right date format and then replace index with the date
-data["Date ref"] = pd.to_datetime(data["Date ref"], format="%m/%d/%Y")
-data.set_index(["Date ref"] , inplace=True)
+data["Date horizon"] = pd.to_datetime(data["Date horizon"], format="%m/%d/%Y")
+data.set_index(["Date horizon"] , inplace=True)
 
-#Change the Base value into a float
-data["Base"] = data["Base"].str.replace(",", ".", regex=False).astype(float)
+#Change the Portfolio & IHSG value into a float
+data["Portfolio"] = data["Portfolio"].str.replace(",", ".", regex=False).astype(float)
+data["IHSG"] = data["IHSG"].str.replace(",", ".", regex=False).astype(float)
 
 #Create the chart using plotly
-fig = px.line(data, x = data.index, y = ["Base"], title = "Trading Portfolio Using Invalidated EMH Strategy")
+fig = px.line(data, x = data.index, y = ["Portfolio","IHSG"], title = "Trading Portfolio Using Invalidated EMH Strategy")
 stl.plotly_chart(fig)
 stl.caption("rebased to 100")
 
@@ -45,5 +46,3 @@ stl.caption("updated as of january 2026")
 
 #Favicon & page title
 stl.set_page_config(page_title="Portfolio Project", page_icon="favicon.png")
-
-
