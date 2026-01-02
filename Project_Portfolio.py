@@ -12,7 +12,7 @@ data = pd.read_csv(f"https://docs.google.com/spreadsheets/d/{sheet_id}/export?fo
 
 
 #Change the 'date' into the right date format and then replace index with the date
-data["Date red"] = pd.to_datetime(data["Date ref"], format="%m/%d/%Y")
+data["Date ref"] = pd.to_datetime(data["Date ref"], format="%m/%d/%Y")
 data.set_index(["Date ref"] , inplace=True)
 
 #Change the Base value into a float
@@ -45,4 +45,5 @@ stl.caption("updated as of january 2026")
 
 #Favicon & page title
 stl.set_page_config(page_title="Portfolio Project", page_icon="favicon.png")
+
 
